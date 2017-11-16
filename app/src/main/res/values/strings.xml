@@ -9,4 +9,12 @@
     <!-- Edit Profile Strings -->
     <string name="about_public_profile">Public content is visible to everyone at an event!</string>
     <string name="about_private_profile">Private content is only visible to other users with your permission</string>
+
+    <!-- public: for sharedpreferences -->
+    <string name="public_name">public_string</string>
+    <string name="public_bio">public_bio</string>
+    <string name="public_email">public_email</string>
+    <string name="public_phone">public_phone</string>
+
+
 </resources>
