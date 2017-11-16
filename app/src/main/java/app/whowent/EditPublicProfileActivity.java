@@ -21,6 +21,7 @@ public class EditPublicProfileActivity extends AppCompatActivity {
     static final int CAMERA_PIC_REQUEST = 1337;
 
     MemoryModel memory = new MemoryModel();
+    ServerConnection server = new ServerConnection();
 
     //UI
     ImageButton editProfilePicture;
@@ -115,7 +116,7 @@ public class EditPublicProfileActivity extends AppCompatActivity {
         map.put(memory.phoneKey_PUBLIC, editPhone.getText().toString());
 
         memory.savePublicProfileToMemory(this, map);
-
+        server.sendInfoToServer(map);
         toast("saving...");
     }
 

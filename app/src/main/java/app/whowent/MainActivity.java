@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_event) {
             // test
             ServerConnection sc = new ServerConnection();
-            sc.getInfoFromServer();
+            //sc.getInfoFromServer();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

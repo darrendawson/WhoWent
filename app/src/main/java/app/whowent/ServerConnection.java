@@ -31,6 +31,30 @@ public class ServerConnection {
     // Get Info
     //==============================================================================================
 
+    //---sendInfoToServer---------------------------------------------------------------------------
+
+    void sendInfoToServer(final HashMap<String, String> info) {
+        // spawn a new thread for request to run on
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                serverResponse = makePostCallToServer(info);
+            }
+        });
+
+        // start thread
+        thread.start();
+
+        // wait for thread to finish before moving on
+        try {
+            thread.join();
+        } catch (Exception e) {
+            System.out.println("Thread issues in SendInfoToServer()");
+        }
+
+    }
+
+    /*
     //---getInfoFromServer--------------------------------------------------------------------------
 
     // makes a post call to server and returns info
@@ -57,7 +81,7 @@ public class ServerConnection {
         // after result has come in and thread closed, change UI on main thread
         return serverResponse;
     }
-
+*/
 
     //==============================================================================================
     // Web Shit
@@ -69,11 +93,8 @@ public class ServerConnection {
     //---makePostCallToServer-----------------------------------------------------------------------
 
     // makes a Post Call
-    String makePostCallToServer() {
+    String makePostCallToServer(HashMap<String, String> info) {
         String response = "";
-
-        HashMap<String, String> dataParams = new HashMap<>();
-        dataParams.put("REQUEST_KEY", "THIS IS A TEST");
 
         // connect
         try {
@@ -85,7 +106,7 @@ public class ServerConnection {
             urlConnection.setDoOutput(true);
             //urlConnection.setRequestProperty("test", "test2");
 
-            urlConnection.getOutputStream().write(getPostDataString(dataParams).getBytes());
+            urlConnection.getOutputStream().write(getPostDataString(info).getBytes());
             urlConnection.getOutputStream().flush();
             urlConnection.getOutputStream().close();
 
